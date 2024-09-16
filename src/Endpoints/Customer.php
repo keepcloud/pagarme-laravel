@@ -21,9 +21,9 @@ class Customer extends ApiAdapter
         return $this->put("customers/{$id}", $data);
     }
 
-    public function all()
+    public function all(array $queryParams = [])
     {
-        return $this->get('customers');
+        return $this->get('customers', $queryParams);
     }
 
     public function createCreditCard($id, array $data)
