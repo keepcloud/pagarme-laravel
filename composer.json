@@ -9,11 +9,20 @@
     ],
     "homepage": "https://github.com/keepcloud/",
     "license": "MIT",
-    "authors": [{
-        "name": "Caio Barilli",
-        "email": "caiobarilli@gmail.com",
-        "role": "Developer"
-    }],
+    "authors": [
+        {
+            "name": "Caio Barilli",
+            "email": "caiobarilli@gmail.com",
+            "homepage": "https://github.com/caiobarilli",
+            "role": "Developer"
+        },
+        {
+            "name": "Edison Costa",
+            "email": "edison@keepcloud.io",
+            "homepage": "https://keepcloud.io/",
+            "role": "Developer"
+        }
+    ],
     "require": {
         "php": "^8.2",
         "guzzlehttp/guzzle": "^7.7",
