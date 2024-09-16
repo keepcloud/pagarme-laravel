@@ -22,10 +22,10 @@ Descrição: Obtém os detalhes de uma assinatura específica pelo seu ID.
 GET /subscriptions
 
 ```php
-Pagarme::subscription()->all()
+Pagarme::subscription()->all([])
 ```
 
-Descrição: Retorna uma lista de todas as assinaturas.
+Descrição: Retorna uma lista de todas as assinaturas. Você pode filtrar e ordenar a lista de assinaturas.
 
 ---
 

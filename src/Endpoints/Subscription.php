@@ -30,9 +30,9 @@ class Subscription extends ApiAdapter
      * Listar assinaturas
      *
      */
-    public function all()
+    public function all(array $queryParams = [])
     {
-        return $this->get('subscriptions');
+        return $this->get("subscriptions", $queryParams);
     }
 
     /**
