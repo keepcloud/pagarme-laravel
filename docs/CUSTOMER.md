@@ -34,10 +34,10 @@ Descrição: Atualiza as informações de um cliente específico com base no ID 
 GET /customers
 
 ```php
-Pagarme::customer()->all()
+Pagarme::customer()->all([])
 ```
 
-Descrição: Obtém uma lista de todos os clientes cadastrados.
+Descrição: Obtém uma lista de todos os clientes cadastrados. É possível passar parâmetros de query para filtrar os resultados.
 
 ---
 

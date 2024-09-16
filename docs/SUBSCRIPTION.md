@@ -3,7 +3,7 @@
 POST /subscriptions
 
 ```php
-Pagarme:subscription()->create(array $data)
+Pagarme::subscription()->create(array $data)
 ```
 
 Descrição: Cria uma assinatura (subscription)  avulsa / Cria assinatura de plan(plan).
