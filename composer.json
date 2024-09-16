@@ -11,16 +11,18 @@
     "license": "MIT",
     "authors": [
         {
+            "name": "Daniel Melo",
+            "email": "danielsmelo1994@gmail.com"
+        },
+        {
             "name": "Caio Barilli",
             "email": "caiobarilli@gmail.com",
-            "homepage": "https://github.com/caiobarilli",
-            "role": "Developer"
+            "homepage": "https://github.com/caiobarilli"
         },
         {
             "name": "Edison Costa",
             "email": "edison@keepcloud.io",
-            "homepage": "https://keepcloud.io/",
-            "role": "Developer"
+            "homepage": "https://keepcloud.io/"
         }
     ],
     "require": {
