@@ -88,7 +88,7 @@ abstract class ApiAdapter
         }
     }
 
-    public function patch(string $url, array $data, $multipart = false)
+    public function patch(string $url, array $data = null, $multipart = false)
     {
         $fullUrl = $this->getUrl($url);
 
