@@ -26,15 +26,17 @@ use Pagarme;
 
 ## Endpoints
 
-Utilize as funções disponíveis para interagir com a API do pagar.me.
+Consulte as funções disponíveis para interagir com a API do pagar.me.
 
-| Recurso      | Descrição                        | Documentação                  |
-|--------------|----------------------------------|--------------------------------|
-| **Customer** | Gerenciamento de clientes        | [Customer](docs/CUSTOMER.md)   |
-| **Charge**   | Criação e gestão de cobranças    | [Charge](docs/CHARGE.md)       |
-| **Order**    | Processamento de pedidos         | [Order](docs/ORDER.md)         |
-| **Recipients** | Gestão de recebedores            | [Recipients](docs/RECIPIENTS.md) |
-| **Subscription** | Gerenciamento de assinaturas    | [Subscription](docs/SUBSCRIPTION.md) |
+- [Customer](docs/CUSTOMER.md)
+
+- [Charge](docs/CHARGE.md)
+
+- [Order](docs/ORDER.md)
+
+- [Recipients](docs/RECIPIENTS.md)
+
+- [Subscription](docs/SUBSCRIPTION.md)
 
 ## Credits
 
