@@ -56,8 +56,6 @@ abstract class ApiAdapter
     {
         $env = env('PAGARME_API_KEY');
 
-        $teste = config('pagarme.api_key');
-
         $fullUrl = $this->getUrl($url);
 
         $options = $this->setHeaders($multipart, $data);
@@ -81,6 +79,23 @@ abstract class ApiAdapter
 
         try {
             return $this->client->request('PUT', $fullUrl, $options);
+        } catch (Exception $e) {
+            if ($e->getCode() == 400) {
+                throw new Exception($this->getResponseErrorDescription($e));
+            }
+
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    public function patch(string $url, $data = null, $multipart = false)
+    {
+        $fullUrl = $this->getUrl($url);
+
+        $options = $this->setHeaders($multipart, $data);
+
+        try {
+            return $this->client->request('PATCH', $fullUrl, $options);
         } catch (Exception $e) {
             if ($e->getCode() == 400) {
                 throw new Exception($this->getResponseErrorDescription($e));
