@@ -49,9 +49,9 @@ class Subscription extends ApiAdapter
      * Editar cartão da assinatura
      * @param string $id
      */
-    public function updateCard($id)
+    public function updateCard($id, $data)
     {
-        return $this->patch("subscriptions/{$id}/card");
+        return $this->patch("subscriptions/{$id}/card", $data);
     }
 
     /**

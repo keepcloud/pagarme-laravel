@@ -22,7 +22,7 @@ Descrição: Obtém os detalhes de uma assinatura específica pelo seu ID.
 GET /subscriptions
 
 ```php
-Pagarme::subscription()->all([])
+Pagarme::subscription()->all(array $query)
 ```
 
 Descrição: Retorna uma lista de todas as assinaturas. Você pode filtrar e ordenar a lista de assinaturas.
@@ -42,7 +42,7 @@ Descrição: Cancela uma assinatura específica pelo seu ID.
 PATCH /subscriptions/{id}/card
 
 ```php
-Pagarme::subscription()->updateCard(string $id)
+Pagarme::subscription()->updateCard(string $id, array $data)
 ```
 
 Descrição: Atualiza as informações do cartão de crédito da assinatura.
