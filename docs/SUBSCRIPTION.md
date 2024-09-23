@@ -25,7 +25,7 @@ GET /subscriptions
 Pagarme::subscription()->all(array $query)
 ```
 
-Descrição: Retorna uma lista de todas as assinaturas. Você pode filtrar e ordenar a lista de assinaturas.
+Descrição: Retorna uma lista de todas as assinaturas. É possível passar parâmetros de query para filtrar os resultados.
 
 ---
 
