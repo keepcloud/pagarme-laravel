@@ -42,9 +42,9 @@ class Charge extends ApiAdapter
         return $this->delete("charges/{$id}");
     }
 
-    public function all()
+    public function all(array $queryParams = [])
     {
-        return $this->get('charges');
+        return $this->get('charges', $queryParams);
     }
 
     public function retry($id)

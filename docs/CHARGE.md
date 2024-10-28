@@ -73,10 +73,10 @@ Descrição: Cancela uma cobrança específica com base no ID.
 GET /charges
 
 ```php
-Pagarme:charge()->all()
+Pagarme:charge()->all(array $query)
 ```
 
-Descrição: Obtém uma lista de todas as cobranças.
+Descrição: Obtém uma lista de todas as cobranças. É possível passar parâmetros de query para filtrar os resultados.
 
 ---
 
