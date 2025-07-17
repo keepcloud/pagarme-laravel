@@ -10,7 +10,8 @@ class Pagarme
         protected Endpoints\Charge $charge,
         protected Endpoints\Order $order,
         protected Endpoints\Payload $payload,
-        protected Endpoints\Subscription $subscription
+        protected Endpoints\Subscription $subscription,
+        protected Endpoints\Anticipation $anticipation
     ) {
     }
 
@@ -42,5 +43,10 @@ class Pagarme
     public function subscription()
     {
         return $this->subscription;
+    }
+
+    public function anticipation()
+    {
+        return $this->anticipation;
     }
 }
