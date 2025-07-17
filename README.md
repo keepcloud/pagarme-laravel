@@ -86,6 +86,7 @@ Consulte as funções disponíveis para interagir com a API do Pagar.me.
 | Order        | Criação e controle de pedidos e itens          | [Ver detalhes](docs/ORDER.md)        |
 | Recipients   | Gerenciamento de recebedores/destinatários     | [Ver detalhes](docs/RECIPIENTS.md)   |
 | Subscription | Assinaturas e faturamento recorrente           | [Ver detalhes](docs/SUBSCRIPTION.md) |
+| Anticipation | Antecipação de recebíveis                      | [Ver detalhes](docs/ANTICIPATION.md) |
 
 ## Créditos
 
