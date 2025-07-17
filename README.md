@@ -10,8 +10,6 @@
   Integração da API <a href="https://pagar.me">Pagar.me</a> com o framework <a href="https://laravel.com">Laravel</a>.
 </p>
 
----
-
 ## 📚 Índice
 
 -   [Instalação](#instalação)
