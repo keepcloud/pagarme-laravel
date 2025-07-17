@@ -1,153 +1,178 @@
-# Customers
+# [⬅️](../README.md) | Customers
 
-POST /customers
+Este módulo permite criar, atualizar, buscar e gerenciar clientes, seus cartões e enderecos.
 
-```php
-Pagarme::customer()->create(array $data)
-```
+## Índice
 
-Descrição: Cria um novo cliente com base nos dados fornecidos.
+-   [Customers](#customers)
+    -   [Criar cliente](#criar-cliente)
+    -   [Buscar cliente](#buscar-cliente)
+    -   [Atualizar cliente](#atualizar-cliente)
+    -   [Listar clientes](#listar-clientes)
+    -   [Cartões](#cartoes)
+        -   [Adicionar cartao de crédito](#adicionar-cartao-de-credito)
+        -   [Buscar cartao especifico](#buscar-cartao-especifico)
+        -   [Listar cartões](#listar-cartoes)
+        -   [Renovar cartao](#renovar-cartao)
+        -   [Atualizar cartao](#atualizar-cartao)
+        -   [Excluir cartao](#excluir-cartao)
+    -   [endereços](#enderecos)
+        -   [Adicionar endereços](#adicionar-endereco)
+        -   [Buscar endereços](#buscar-endereco)
+        -   [Listar endereços](#listar-enderecos)
+        -   [Atualizar endereços](#atualizar-endereco)
+        -   [Excluir endereços](#excluir-endereco)
 
----
+## Criar cliente
 
-GET /customers/{id}
-
-
-```php
-Pagarme::customer()->find(string $id)
-```
-
-Descrição: Obtém as informações de um cliente específico com base no ID.
-
----
-
-PUT /customers/{id}
-
-```php
-Pagarme::customer()->update(string $id, array $data)
-```
-
-Descrição: Atualiza as informações de um cliente específico com base no ID e nos novos dados fornecidos.
-
----
-
-GET /customers
+**POST** `/customers`
 
 ```php
-Pagarme::customer()->all(array $query)
+Pagarme::customer()->create(array $data);
 ```
 
-Descrição: Obtém uma lista de todos os clientes cadastrados. É possível passar parâmetros de query para filtrar os resultados.
+Cria um novo cliente com base nos dados fornecidos.
 
----
+## Buscar cliente
 
-POST /customers/{id}/cards
+**GET** `/customers/{id}`
 
 ```php
-Pagarme::customer()->createCreditCard(string $id, array $data)
+Pagarme::customer()->find(string $id);
 ```
 
-Descrição: Cria um novo cartão de crédito associado a um cliente específico com base no ID e nos dados do cartão.
+Obtém as informações de um cliente especifico com base no ID.
 
----
+## Atualizar cliente
 
-GET /customers/{id}/cards/{cardId}
+**PUT** `/customers/{id}`
 
 ```php
-Pagarme::customer()->findCreditCard(string $id, string $cardId)
+Pagarme::customer()->update(string $id, array $data);
 ```
 
-Descrição: Obtém as informações de um cartão de crédito específico associado a um cliente com base nos IDs do cliente e do cartão.
+Atualiza as informações de um cliente especifico com base no ID e nos novos dados fornecidos.
 
----
+## Listar clientes
 
-GET /customers/{id}/cards
+**GET** `/customers`
 
 ```php
-Pagarme::customer()->allCreditCards(string $id)
+Pagarme::customer()->all(array $query);
 ```
 
-Descrição: Obtém uma lista de todos os cartões de crédito associados a um cliente específico com base no ID do cliente.
+Obtém uma lista de todos os clientes cadastrados. É possível passar parâmetros de query para filtrar os resultados.
 
----
+# Cartões
 
-PUT /customers/{id}/cards/{cardId}
+# Adicionar cartao de credito
+
+**POST** `/customers/{id}/cards`
 
 ```php
-Pagarme::customer()->updateCreditCard(string $id, $cardId, array $data)
+Pagarme::customer()->createCreditCard(string $id, array $data);
 ```
 
-Descrição: Atualiza as informações de um cartão de crédito específico associado a um cliente com base nos IDs do cliente e do cartão, e nos novos dados fornecidos.
+Cria um novo cartao de crédito associado a um cliente com base no ID e nos dados fornecidos.
 
----
+# Buscar cartao especifico
 
-DELETE /customers/{id}/cards/{cardId}
+**GET** `/customers/{id}/cards/{cardId}`
 
 ```php
-Pagarme::customer()->deleteCreditCard(string $id, string $cardId)
+Pagarme::customer()->findCreditCard(string $id, string $cardId);
 ```
 
-Descrição: Exclui um cartão de crédito específico associado a um cliente com base nos IDs do cliente e do cartão.
+Obtém as informações de um cartao específico associado a um cliente.
 
----
+# Listar cartões
 
-POST /customers/{id}/cards/{cardId}/renew
+**GET** `/customers/{id}/cards`
 
 ```php
-Pagarme::customer()->renewCreditCard(string $id, string $cardId)
+Pagarme::customer()->allCreditCards(string $id);
 ```
 
-Descrição: Renova um cartão de crédito específico associado a um cliente com base nos IDs do cliente e do cartão.
+Obtém todos os cartões de crédito associados a um cliente.
 
----
+# Renovar cartao
 
-POST /customers/{id}/addresses
+**POST** `/customers/{id}/cards/{cardId}/renew`
 
 ```php
-Pagarme::customer()->createAddress(string $id, array $data)
+Pagarme::customer()->renewCreditCard(string $id, string $cardId);
 ```
 
-Descrição: Cria um novo endereço associado a um cliente específico com base no ID fornecido e nos dados do endereço.
+Renova um cartao de crédito específico de um cliente.
 
----
+# Atualizar cartao
 
-GET /customers/{id}/addresses/{addressId}
+**PUT** `/customers/{id}/cards/{cardId}`
 
 ```php
-Pagarme::customer()->findAddress(string $id, string $addressId)
+Pagarme::customer()->updateCreditCard(string $id, string $cardId, array $data);
 ```
 
-Descrição: Obtém as informações de um endereço específico associado a um cliente com base nos IDs do cliente e do endereço.
+Atualiza os dados de um cartao de crédito associado a um cliente.
 
----
+# Excluir cartao
 
-GET /customers/{id}/addresses
+**DELETE** `/customers/{id}/cards/{cardId}`
 
 ```php
-Pagarme::customer()->allAddresses(string $id)
+Pagarme::customer()->deleteCreditCard(string $id, string $cardId);
 ```
 
-Descrição: Obtém uma lista de todos os endereços associados a um cliente específico com base no ID do cliente.
+Exclui um cartao de crédito específico associado a um cliente.
 
----
+# Enderecos
 
-PUT /customers/{id}/addresses/{addressId}
+# Adicionar endereco
 
+**POST** `/customers/{id}/addresses`
 
 ```php
-Pagarme::customer()->updateAddress(string $id, $addressId, array $data)
+Pagarme::customer()->createAddress(string $id, array $data);
 ```
 
-Descrição: Atualiza as informações de um endereço específico associado a um cliente com base nos IDs do cliente e do endereço, e nos novos dados fornecidos.
+Cria um novo endereço associado a um cliente com base no ID e nos dados fornecidos.
 
----
+# Buscar endereco
 
-DELETE /customers/{id}/addresses/{addressId}
+**GET** `/customers/{id}/addresses/{addressId}`
 
 ```php
-Pagarme::customer()->deleteAddress(string $id, string $addressId)
+Pagarme::customer()->findAddress(string $id, string $addressId);
 ```
 
-Descrição: Exclui um endereço específico associado a um cliente com base nos IDs do cliente e do endereço.
+Obtém as informações de um endereço específico associado a um cliente.
 
----
+# Listar enderecos
+
+**GET** `/customers/{id}/addresses`
+
+```php
+Pagarme::customer()->allAddresses(string $id);
+```
+
+Obtém todos os endereços associados a um cliente.
+
+# Atualizar endereco
+
+**PUT** `/customers/{id}/addresses/{addressId}`
+
+```php
+Pagarme::customer()->updateAddress(string $id, string $addressId, array $data);
+```
+
+Atualiza as informações de um endereço específico associado a um cliente.
+
+# Excluir endereco
+
+**DELETE** `/customers/{id}/addresses/{addressId}`
+
+```php
+Pagarme::customer()->deleteAddress(string $id, string $addressId);
+```
+
+Exclui um endereco específico associado a um cliente.
