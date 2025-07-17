@@ -68,7 +68,11 @@ use Pagarme;
 Exemplo de uso:
 
 ```php
-Pagarme::customer()->all();
+$customers = Pagarme::customer()->all();
+
+$customersArray = json_decode($customers->getBody()->getContents(), true);
+
+dd($customersArray);
 ```
 
 ## Endpoints
