@@ -29,11 +29,33 @@ composer require keepcloud/pagarme-laravel
 
 ## Configuração
 
-Publique o arquivo de configuração global com o comando:
+Antes de começar a utilizar o pacote, adicione sua chave de API no arquivo `.env` da aplicação:
+
+```env
+PAGARME_API_KEY=ak_test_sua_chave_aqui
+```
+
+Em seguida, certifique-se de que o arquivo de configuração `config/pagarme.php` esteja publicado e corretamente configurado. Ele será responsável por armazenar os dados de conexão com a API do Pagar.me:
+
+##### config/pagarme.php
+
+```php
+<?php
+
+return [
+    'api_key'     => env('PAGARME_API_KEY', 'ak_test_*'),
+    'base_url'    => 'https://api.pagar.me/core',
+    'api_version' => 'v5',
+];
+```
+
+Se você ainda não publicou o arquivo de configuração, execute o comando abaixo:
 
 ```bash
 php artisan vendor:publish --tag="pagarme-config"
 ```
+
+Esse passo é essencial para garantir que a integração com a API funcione corretamente, utilizando a chave de autenticação e a URL base da API do Pagar.me.
 
 ## Como usar
 
