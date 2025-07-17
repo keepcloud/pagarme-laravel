@@ -56,7 +56,7 @@ Pagarme::subscription()->cancel(string $id)
 
 Descrição: Cancela uma assinatura específica pelo seu ID.
 
-## Atualizar cartão
+## Atualizar cartao
 
 **PATCH** `/subscriptions/{id}/card`
 
@@ -86,7 +86,7 @@ Pagarme::subscription()->updatePaymentMethod(string $id)
 
 Descrição: Atualiza o método de pagamento da assinatura.
 
-## Atualizar data de início
+## Atualizar data de inicio
 
 **PATCH** `/subscriptions/{id}/start-at`
 
