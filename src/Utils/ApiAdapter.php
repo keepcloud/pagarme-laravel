@@ -22,7 +22,7 @@ abstract class ApiAdapter
     public function getHeader()
     {
         return [
-            'Content-Type' => 'application/json',
+            'Content-Type'  => 'application/json',
             'Authorization' => 'Basic ' . base64_encode(config('pagarme.api_key') . ':'),
         ];
     }
@@ -30,7 +30,7 @@ abstract class ApiAdapter
     public function getFormDataHeader()
     {
         return $headers = [
-            'Content-Type' => 'multipart/form-data',
+            'Content-Type'  => 'multipart/form-data',
             'Authorization' => 'Basic ' . base64_encode(config('pagarme.api_key') . ':'),
         ];
     }
@@ -111,7 +111,7 @@ abstract class ApiAdapter
 
         $options = $this->setHeaders($multipart);
 
-        if (!empty($queryParams)) {
+        if (! empty($queryParams)) {
             $fullUrl .= '?' . http_build_query($queryParams);
         }
 

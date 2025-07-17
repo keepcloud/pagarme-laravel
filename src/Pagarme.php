@@ -11,7 +11,8 @@ class Pagarme
         protected Endpoints\Order $order,
         protected Endpoints\Payload $payload,
         protected Endpoints\Subscription $subscription
-    ) {}
+    ) {
+    }
 
     public function customer()
     {

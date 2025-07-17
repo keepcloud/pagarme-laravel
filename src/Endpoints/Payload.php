@@ -12,10 +12,15 @@ use Keepcloud\Pagarme\Contracts\Wallet\CreditCard;
 class Payload
 {
     private $order;
+
     private $charge;
+
     private $item;
+
     private $address;
+
     private $customer;
+
     private $card;
 
     public function __construct(
@@ -26,12 +31,12 @@ class Payload
         Customer $customer,
         CreditCard $card
     ) {
-        $this->order = $order;
-        $this->charge = $charge;
-        $this->item = $item;
-        $this->address = $address;
+        $this->order    = $order;
+        $this->charge   = $charge;
+        $this->item     = $item;
+        $this->address  = $address;
         $this->customer = $customer;
-        $this->card = $card;
+        $this->card     = $card;
     }
 
     public function order(...$args)
@@ -74,19 +79,23 @@ class Payload
         return $this->address->address(...$args);
     }
 
-    public function OrderInterface() {
+    public function OrderInterface()
+    {
         return $this->order;
     }
 
-    public function ChargeInterface() {
+    public function ChargeInterface()
+    {
         return $this->charge;
     }
 
-    public function ItemInterface() {
+    public function ItemInterface()
+    {
         return $this->item;
     }
 
-    public function CustomerInterface() {
+    public function CustomerInterface()
+    {
         return $this->customer;
     }
 }

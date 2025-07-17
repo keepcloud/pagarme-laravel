@@ -6,7 +6,6 @@ use Keepcloud\Pagarme\Utils\ApiAdapter;
 
 class Charge extends ApiAdapter
 {
-
     public function capture($id, array $data)
     {
         return $this->post("charges/{$id}/capture", $data);
