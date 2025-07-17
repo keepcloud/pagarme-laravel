@@ -16,8 +16,8 @@
 -   [Configuração](#configuração)
 -   [Como usar](#como-usar)
 -   [Endpoints disponíveis](#endpoints)
--   [Créditos](#créditos)
--   [Licença](#licença)
+-   [Créditos](#creditos)
+-   [Licença](#licenca)
 
 ## Instalação
 
@@ -83,10 +83,10 @@ Consulte as funções disponíveis para interagir com a API do Pagar.me.
 | Recipients   | Gerenciamento de recebedores/destinatários     | [Ver detalhes](docs/RECIPIENTS.md)   |
 | Subscription | Assinaturas e faturamento recorrente           | [Ver detalhes](docs/SUBSCRIPTION.md) |
 
-## Credits
+## Créditos
 
 [Keepcloud](https://github.com/Keepcloud)
 
-## License
+## Licenca
 
 Licença MIT (MIT). Por favor, consulte o [Arquivo de Licença](LICENSE.md) para mais informações.
