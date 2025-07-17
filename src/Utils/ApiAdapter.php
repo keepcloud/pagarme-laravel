@@ -29,7 +29,7 @@ abstract class ApiAdapter
 
     public function getFormDataHeader()
     {
-        return $headers = [
+        return [
             'Content-Type'  => 'multipart/form-data',
             'Authorization' => 'Basic ' . base64_encode(config('pagarme.api_key') . ':'),
         ];
@@ -54,55 +54,17 @@ abstract class ApiAdapter
 
     public function post(string $url, array $data, $multipart = false)
     {
-        $env = env('PAGARME_API_KEY');
-
-        $fullUrl = $this->getUrl($url);
-
-        $options = $this->setHeaders($multipart, $data);
-
-        try {
-            return $this->client->request('POST', $fullUrl, $options);
-        } catch (Exception $e) {
-            if ($e->getCode() == 400) {
-                throw new Exception($this->getResponseErrorDescription($e));
-            }
-
-            throw new Exception($e->getMessage());
-        }
+        return $this->makeRequest('POST', $url, $data, $multipart);
     }
 
     public function put(string $url, $data = null, $multipart = false)
     {
-        $fullUrl = $this->getUrl($url);
-
-        $options = $this->setHeaders($multipart, $data);
-
-        try {
-            return $this->client->request('PUT', $fullUrl, $options);
-        } catch (Exception $e) {
-            if ($e->getCode() == 400) {
-                throw new Exception($this->getResponseErrorDescription($e));
-            }
-
-            throw new Exception($e->getMessage());
-        }
+        return $this->makeRequest('PUT', $url, $data, $multipart);
     }
 
     public function patch(string $url, array $data = null, $multipart = false)
     {
-        $fullUrl = $this->getUrl($url);
-
-        $options = $this->setHeaders($multipart, $data);
-
-        try {
-            return $this->client->request('PATCH', $fullUrl, $options);
-        } catch (Exception $e) {
-            if ($e->getCode() == 400) {
-                throw new Exception($this->getResponseErrorDescription($e));
-            }
-
-            throw new Exception($e->getMessage());
-        }
+        return $this->makeRequest('PATCH', $url, $data, $multipart);
     }
 
     public function get(string $url, array $queryParams = [], $multipart = false)
@@ -115,53 +77,64 @@ abstract class ApiAdapter
             $fullUrl .= '?' . http_build_query($queryParams);
         }
 
-        try {
-            return $this->client->request('GET', $fullUrl, $options);
-        } catch (Exception $e) {
-            if ($e->getCode() == 400) {
-                throw new Exception($this->getResponseErrorDescription($e));
-            }
-
-            throw new Exception($e->getMessage());
-        }
+        return $this->makeRequest('GET', $fullUrl, null, $multipart, $options);
     }
 
     public function delete(string $url, $multipart = false)
     {
+        return $this->makeRequest('DELETE', $url, null, $multipart);
+    }
+
+    protected function makeRequest(string $method, string $url, $data = null, bool $multipart = false, array $options = [])
+    {
         $fullUrl = $this->getUrl($url);
 
-        $options = $this->setHeaders($multipart);
+        $options = array_merge($options, $this->setHeaders($multipart, $data));
 
         try {
-            return $this->client->request('DELETE', $fullUrl, $options);
+            return $this->client->request($method, $fullUrl, $options);
+        } catch (ClientException $e) {
+            $this->handleClientException($e);
         } catch (Exception $e) {
-            if ($e->getCode() == 400) {
-                throw new Exception($this->getResponseErrorDescription($e));
-            }
-
-            throw new Exception($e->getMessage());
+            throw new Exception($e->getMessage(), $e->getCode());
         }
     }
 
-    public function getResponseErrorDescription($e)
+    protected function handleClientException(ClientException $e)
     {
-        if ($e->getCode() == 400) {
-            return json_decode($e->getResponse()->getBody()->getContents(), true);
+        $response = $e->getResponse();
+
+        $statusCode = $e->getCode();
+
+        $responseBody = $response ? $response->getBody()->getContents() : '{}';
+
+        $responseData = json_decode($responseBody, true);
+
+        $errorMessage = $responseData['message'] ?? 'Unknown request error';
+
+        if (isset($responseData['errors'])) {
+            foreach ($responseData['errors'] as $field => $errors) {
+                $error = ["field" => $field, "errors" => implode(', ', $errors)];
+
+                $errorMessage .= " " . json_encode($error);
+            }
         }
 
-        throw new Exception('Não existe resposta de erro do servidor');
+        throw new Exception($errorMessage, $statusCode);
     }
 
     public function setHeaders(bool $multipart = false, array $data = null): array
     {
+        $options = [];
+
         if ($multipart) {
             $options['headers'] = $this->getFormDataHeader();
+        } else {
+            $options['headers'] = $this->getHeader();
         }
 
-        $options['headers'] = $this->getHeader();
-
         if ($data) {
-            $options['body'] = json_encode($data);
+            $options['json'] = $data;
         }
 
         return $options;
