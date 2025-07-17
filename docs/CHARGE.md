@@ -7,7 +7,7 @@ Este módulo permite criar, capturar, atualizar e gerenciar cobranças.
 -   [Capturar cobrança](#capturar-cobrança)
 -   [Criar cobrança](#criar-cobrança)
 -   [Buscar cobrança](#buscar-cobrança)
--   [Editar cartão da cobrança](#editar-cartão-da-cobrança)
+-   [Editar cartao da cobrança](#editar-cartao-da-cobrança)
 -   [Atualizar data de vencimento](#atualizar-data-de-vencimento)
 -   [Atualizar método de pagamento](#atualizar-metodo-de-pagamento)
 -   [Cancelar cobrança](#cancelar-cobrança)
@@ -45,7 +45,7 @@ Pagarme:charge()->find(string $id)
 
 Descrição: Obtém as informações de uma cobrança específica com base no ID.
 
-## Editar cartão da cobrança
+## Editar cartao da cobrança
 
 **PUT** `/charges/{id}/card`
 
@@ -53,7 +53,7 @@ Descrição: Obtém as informações de uma cobrança específica com base no ID
 Pagarme:charge()->editCard(string $id, array $data)
 ```
 
-Descrição: Edita as informações do cartão associado a uma cobrança específica com base no ID da cobrança e nos novos dados fornecidos.
+Descrição: Edita as informações do cartao associado a uma cobrança específica com base no ID da cobrança e nos novos dados fornecidos.
 
 ## Atualizar data de vencimento
 
