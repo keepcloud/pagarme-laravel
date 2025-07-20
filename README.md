@@ -14,8 +14,8 @@
 
 -   [Instalação](#instalação)
 -   [Configuração](#configuração)
--   [Como usar](#como-usar)
 -   [Endpoints disponíveis](#endpoints)
+-   [Como usar](#como-usar)
 -   [Créditos](#creditos)
 -   [Licença](#licenca)
 
@@ -57,24 +57,6 @@ php artisan vendor:publish --tag="pagarme-config"
 
 Esse passo é essencial para garantir que a integração com a API funcione corretamente, utilizando a chave de autenticação e a URL base da API do Pagar.me.
 
-## Como usar
-
-Adicione o import no local onde desejar utilizar o pacote:
-
-```php
-use Pagarme;
-```
-
-Exemplo de uso:
-
-```php
-$customers = Pagarme::customer()->all();
-
-$customersArray = json_decode($customers->getBody()->getContents(), true);
-
-dd($customersArray);
-```
-
 ## Endpoints
 
 Consulte as funções disponíveis para interagir com a API do Pagar.me.
@@ -87,6 +69,107 @@ Consulte as funções disponíveis para interagir com a API do Pagar.me.
 | Recipients   | Gerenciamento de recebedores/destinatários     | [Ver detalhes](docs/RECIPIENTS.md)   |
 | Subscription | Assinaturas e faturamento recorrente           | [Ver detalhes](docs/SUBSCRIPTION.md) |
 | Anticipation | Antecipação de recebíveis                      | [Ver detalhes](docs/ANTICIPATION.md) |
+
+## Como usar
+
+Adicione o import no local onde desejar utilizar o pacote:
+
+```php
+use Pagarme;
+```
+
+Exemplo de uso:
+
+```php
+// Criar cliente
+$newCustomer = Pagarme::customer()->create([
+    'name' => 'Cliente Teste',
+    'email' => 'cliente@teste.com',
+    'type' => 'individual',
+    'documents' => [
+        ['type' => 'cpf', 'number' => '12345678900']
+    ]
+]);
+dd(json_decode($newCustomer->getBody()->getContents(), true));
+
+// Listar todos os clientes
+// $customers = Pagarme::customer()->all();
+// dd(json_decode($customers->getBody()->getContents(), true));
+
+// Buscar cliente por ID
+// $customer = Pagarme::customer()->find('cus_xxx');
+// dd(json_decode($customer->getBody()->getContents(), true));
+
+// Atualizar cliente
+// $updated = Pagarme::customer()->update('cus_xxx', [
+//     'name' => 'Cliente Atualizado',
+//     'email' => 'atualizado@teste.com',
+// ]);
+// dd(json_decode($updated->getBody()->getContents(), true));
+
+// Criar cartão de crédito
+// $card = Pagarme::customer()->createCreditCard('cus_xxx', [
+//     'number' => '4111111111111111',
+//     'holder_name' => 'Cliente Teste',
+//     'exp_month' => '12',
+//     'exp_year' => '2030',
+//     'cvv' => '123'
+// ]);
+// dd(json_decode($card->getBody()->getContents(), true));
+
+// Buscar cartão
+// $card = Pagarme::customer()->findCreditCard('cus_xxx', 'card_xxx');
+// dd(json_decode($card->getBody()->getContents(), true));
+
+// Listar cartões
+// $cards = Pagarme::customer()->allCreditCards('cus_xxx');
+// dd(json_decode($cards->getBody()->getContents(), true));
+
+// Renovar cartão
+// $renewed = Pagarme::customer()->renewCreditCard('cus_xxx', 'card_xxx');
+// dd(json_decode($renewed->getBody()->getContents(), true));
+
+// Atualizar cartão
+// $updatedCard = Pagarme::customer()->updateCreditCard('cus_xxx', 'card_xxx', [
+//     'holder_name' => 'Novo Nome'
+//     'exp_month' => 12,
+//     'exp_year' => 2036,
+// ]);
+// dd(json_decode($updatedCard->getBody()->getContents(), true));
+
+// Deletar cartão
+// $deletedCard = Pagarme::customer()->deleteCreditCard('cus_xxx', 'card_xxx');
+// dd(json_decode($deletedCard->getBody()->getContents(), true));
+
+// Adicionar endereço
+// $address = Pagarme::customer()->createAddress('cus_xxx', [
+//     'line_1' => 'Rua A',
+//     'zip_code' => '12345678',
+//     'city' => 'Cidade',
+//     'state' => 'SP',
+//     'country' => 'BR'
+// ]);
+// dd(json_decode($address->getBody()->getContents(), true));
+
+// Buscar endereço
+// $address = Pagarme::customer()->findAddress('cus_xxx', 'addr_xxx');
+// dd(json_decode($address->getBody()->getContents(), true));
+
+// Listar endereços
+// $addresses = Pagarme::customer()->allAddresses('cus_xxx');
+// dd(json_decode($addresses->getBody()->getContents(), true));
+
+// Atualizar endereço
+// $updatedAddress = Pagarme::customer()->updateAddress('cus_xxx', 'addr_xxx', [
+//     'line_1' => 'Rua B',
+//     'city' => 'Nova Cidade'
+// ]);
+// dd(json_decode($updatedAddress->getBody()->getContents(), true));
+
+// Deletar endereço
+// $deletedAddress = Pagarme::customer()->deleteAddress('cus_xxx', 'addr_xxx');
+// dd(json_decode($deletedAddress->getBody()->getContents(), true));
+```
 
 ## Créditos
 
