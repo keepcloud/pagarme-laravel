@@ -4,22 +4,23 @@ namespace Keepcloud\Pagarme\Utils;
 
 use Exception;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 
 abstract class ApiAdapter
 {
-    private $client;
+    private Client $client;
 
     public function __construct(Client $client)
     {
         $this->client = $client;
     }
 
-    public function setClient(Client $client)
+    public function setClient(Client $client): void
     {
         $this->client = $client;
     }
 
-    public function getHeader()
+    public function getHeader(): array
     {
         return [
             'Content-Type'  => 'application/json',
@@ -27,7 +28,7 @@ abstract class ApiAdapter
         ];
     }
 
-    public function getFormDataHeader()
+    public function getFormDataHeader(): array
     {
         return [
             'Content-Type'  => 'multipart/form-data',
@@ -35,59 +36,49 @@ abstract class ApiAdapter
         ];
     }
 
-    public function getUrl(string $url)
+    public function getUrl(string $url): string
     {
-        $baseUrl = config('pagarme.base_url');
+        $baseUrl = rtrim(config('pagarme.base_url'), '/');
 
-        if (substr($baseUrl, -1) != '/') {
-            $baseUrl .= '/';
-        }
+        $apiVersion = rtrim(config('pagarme.api_version'), '/');
 
-        $apiVersion = config('pagarme.api_version');
-
-        if (substr($apiVersion, -1) != '/') {
-            $apiVersion .= '/';
-        }
-
-        return $baseUrl . $apiVersion . $url;
+        return "{$baseUrl}/{$apiVersion}/{$url}";
     }
 
-    public function post(string $url, array $data, $multipart = false)
+    public function post(string $url, array $data, bool $multipart = false)
     {
         return $this->makeRequest('POST', $url, $data, $multipart);
     }
 
-    public function put(string $url, $data = null, $multipart = false)
+    public function put(string $url, array $data = null, bool $multipart = false)
     {
         return $this->makeRequest('PUT', $url, $data, $multipart);
     }
 
-    public function patch(string $url, array $data = null, $multipart = false)
+    public function patch(string $url, array $data = null, bool $multipart = false)
     {
         return $this->makeRequest('PATCH', $url, $data, $multipart);
     }
 
-    public function get(string $url, array $queryParams = [], $multipart = false)
+    public function get(string $url, array $queryParams = [], bool $multipart = false)
     {
-        $options = $this->setHeaders($multipart);
-
         if (! empty($queryParams)) {
             $url .= '?' . http_build_query($queryParams);
         }
 
-        return $this->makeRequest('GET', $url, null, $multipart, $options);
+        return $this->makeRequest('GET', $url, null, $multipart);
     }
 
-    public function delete(string $url, $multipart = false)
+    public function delete(string $url, bool $multipart = false)
     {
         return $this->makeRequest('DELETE', $url, null, $multipart);
     }
 
-    protected function makeRequest(string $method, string $url, $data = null, bool $multipart = false, array $options = [])
+    protected function makeRequest(string $method, string $url, array $data = null, bool $multipart = false, array $options = [])
     {
         $fullUrl = $this->getUrl($url);
 
-        $options = array_merge($options, $this->setHeaders($multipart, $data));
+        $options = $this->mergeHeaders($options, $multipart, $data);
 
         try {
             return $this->client->request($method, $fullUrl, $options);
@@ -98,7 +89,7 @@ abstract class ApiAdapter
         }
     }
 
-    protected function handleClientException(ClientException $e)
+    protected function handleClientException(ClientException $e): void
     {
         $response = $e->getResponse();
 
@@ -108,12 +99,11 @@ abstract class ApiAdapter
 
         $responseData = json_decode($responseBody, true);
 
-        $errorMessage = $responseData['message'] ?? 'Unknown request error';
+        $errorMessage = "[{$statusCode}] " . ($responseData['message'] ?? 'Unknown request error');
 
         if (isset($responseData['errors'])) {
             foreach ($responseData['errors'] as $field => $errors) {
                 $error = ["field" => $field, "errors" => implode(', ', $errors)];
-
                 $errorMessage .= " " . json_encode($error);
             }
         }
@@ -121,17 +111,13 @@ abstract class ApiAdapter
         throw new Exception($errorMessage, $statusCode);
     }
 
-    public function setHeaders(bool $multipart = false, array $data = null): array
+    protected function mergeHeaders(array $options, bool $multipart, ?array $data = null): array
     {
-        $options = [];
+        $defaultHeaders = $multipart ? $this->getFormDataHeader() : $this->getHeader();
 
-        if ($multipart) {
-            $options['headers'] = $this->getFormDataHeader();
-        } else {
-            $options['headers'] = $this->getHeader();
-        }
+        $options['headers'] = array_merge($defaultHeaders, $options['headers'] ?? []);
 
-        if ($data) {
+        if ($data !== null) {
             $options['json'] = $data;
         }
 
