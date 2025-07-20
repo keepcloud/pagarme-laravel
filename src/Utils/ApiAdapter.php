@@ -69,15 +69,13 @@ abstract class ApiAdapter
 
     public function get(string $url, array $queryParams = [], $multipart = false)
     {
-        $fullUrl = $this->getUrl($url);
-
         $options = $this->setHeaders($multipart);
 
         if (! empty($queryParams)) {
-            $fullUrl .= '?' . http_build_query($queryParams);
+            $url .= '?' . http_build_query($queryParams);
         }
 
-        return $this->makeRequest('GET', $fullUrl, null, $multipart, $options);
+        return $this->makeRequest('GET', $url, null, $multipart, $options);
     }
 
     public function delete(string $url, $multipart = false)
