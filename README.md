@@ -12,12 +12,22 @@
 
 ## 📚 Índice
 
+-   [Requisitos](#requisitos)
 -   [Instalação](#instalação)
 -   [Configuração](#configuração)
 -   [Endpoints disponíveis](#endpoints)
 -   [Como usar](#como-usar)
 -   [Créditos](#creditos)
 -   [Licença](#licenca)
+
+## Requisitos
+
+| Pacote | PHP  | Laravel        |
+| ------ | ---- | -------------- |
+| 1.3.x  | 8.2+ | 11.x, 12.x, 13.x |
+| 1.2.x  | 8.2+ | 11.x           |
+
+> O Laravel 13 exige PHP 8.3 ou superior.
 
 ## Instalação
 
@@ -86,9 +96,8 @@ $newCustomer = Pagarme::customer()->create([
     'name' => 'Cliente Teste',
     'email' => 'cliente@teste.com',
     'type' => 'individual',
-    'documents' => [
-        ['type' => 'cpf', 'number' => '12345678900']
-    ]
+    'document' => '12345678900',
+    'document_type' => 'CPF',
 ]);
 dd(json_decode($newCustomer->getBody()->getContents(), true));
 
@@ -131,7 +140,7 @@ dd(json_decode($newCustomer->getBody()->getContents(), true));
 
 // Atualizar cartão
 // $updatedCard = Pagarme::customer()->updateCreditCard('cus_xxx', 'card_xxx', [
-//     'holder_name' => 'Novo Nome'
+//     'holder_name' => 'Novo Nome',
 //     'exp_month' => 12,
 //     'exp_year' => 2036,
 // ]);

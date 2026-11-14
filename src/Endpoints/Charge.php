@@ -23,17 +23,17 @@ class Charge extends ApiAdapter
 
     public function editCard($id, array $data)
     {
-        return $this->put("charges/{$id}/card", $data);
+        return $this->patch("charges/{$id}/card", $data);
     }
 
     public function dueDate($id, array $data)
     {
-        return $this->put("charges/{$id}/due-date", $data);
+        return $this->patch("charges/{$id}/due-date", $data);
     }
 
     public function updatePaymentMethod($id, array $data)
     {
-        return $this->put("charges/{$id}/payment-method", $data);
+        return $this->patch("charges/{$id}/payment-method", $data);
     }
 
     public function cancel($id)

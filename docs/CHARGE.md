@@ -20,7 +20,7 @@ Este módulo permite criar, capturar, atualizar e gerenciar cobranças.
 **POST** `/charges/{id}/capture`
 
 ```php
-Pagarme:charge()->capture(string $id, array $data)
+Pagarme::charge()->capture(string $id, array $data)
 ```
 
 Descrição: Captura um pagamento pendente associado a uma cobrança específica com base no ID da cobrança e nos dados fornecidos.
@@ -30,7 +30,7 @@ Descrição: Captura um pagamento pendente associado a uma cobrança específica
 **POST** `/charges`
 
 ```php
-Pagarme:charge()->create(array $data)
+Pagarme::charge()->create(array $data)
 ```
 
 Descrição: Cria uma nova cobrança com base nos dados fornecidos.
@@ -40,47 +40,49 @@ Descrição: Cria uma nova cobrança com base nos dados fornecidos.
 **GET** `/charges/{id}`
 
 ```php
-Pagarme:charge()->find(string $id)
+Pagarme::charge()->find(string $id)
 ```
 
 Descrição: Obtém as informações de uma cobrança específica com base no ID.
 
 ## Editar cartao da cobrança
 
-**PUT** `/charges/{id}/card`
+**PATCH** `/charges/{id}/card`
 
 ```php
-Pagarme:charge()->editCard(string $id, array $data)
+Pagarme::charge()->editCard(string $id, array $data)
 ```
 
 Descrição: Edita as informações do cartao associado a uma cobrança específica com base no ID da cobrança e nos novos dados fornecidos.
 
 ## Atualizar data de vencimento
 
-**PUT** `/charges/{id}/due-date`
+**PATCH** `/charges/{id}/due-date`
 
 ```php
-Pagarme:charge()->dueDate(string $id, array $data)
+Pagarme::charge()->dueDate(string $id, array $data)
 ```
 
 Descrição: Atualiza a data de vencimento de uma cobrança específica com base no ID da cobrança e na nova data de vencimento.
 
 ## Atualizar método de pagamento
 
-**PUT** `/charges/{id}/payment-method`
+**PATCH** `/charges/{id}/payment-method`
 
 ```php
-Pagarme:charge()->updatePaymentMethod(string $id, array $data)
+Pagarme::charge()->updatePaymentMethod(string $id, array $data)
 ```
 
 Descrição: Atualiza o método de pagamento associado a uma cobrança específica com base no ID da cobrança e nos novos dados do método de pagamento.
+
+> Esta rota não aparece na referência pública da API v5 (só no SDK oficial `pagarme-core-api-php`). Teste no sandbox antes de usar em produção.
 
 ## Cancelar cobrança
 
 **DELETE** `/charges/{id}`
 
 ```php
-Pagarme:charge()->cancel(string $id)
+Pagarme::charge()->cancel(string $id)
 ```
 
 Descrição: Cancela uma cobrança específica com base no ID.
@@ -90,7 +92,7 @@ Descrição: Cancela uma cobrança específica com base no ID.
 **GET** `/charges`
 
 ```php
-Pagarme:charge()->all(array $query)
+Pagarme::charge()->all(array $query)
 ```
 
 Descrição: Obtém uma lista de todas as cobranças. É possível passar parâmetros de query para filtrar os resultados.
@@ -100,7 +102,7 @@ Descrição: Obtém uma lista de todas as cobranças. É possível passar parâm
 **POST** `/charges/{id}/retry`
 
 ```php
-Pagarme:charge()->retry(string $id)
+Pagarme::charge()->retry(string $id)
 ```
 
 Descrição: Tenta novamente realizar um pagamento para uma cobrança específica que tenha falhado anteriormente, com base no ID da cobrança.
@@ -110,7 +112,7 @@ Descrição: Tenta novamente realizar um pagamento para uma cobrança específic
 **POST** `/charges/{id}/confirm-payment`
 
 ```php
-Pagarme:charge()->confirmCash(string $id, array $data)
+Pagarme::charge()->confirmCash(string $id, array $data)
 ```
 
 Descrição: Confirma o pagamento em dinheiro associado a uma cobrança específica com base no ID da cobrança e nos dados fornecidos.
