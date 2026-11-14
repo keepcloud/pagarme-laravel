@@ -60,12 +60,12 @@ final class Charge
         int $total,
         string $customer,
         array $billingAddress,
-        string $due_at = null,
+        ?string $due_at = null,
         int $checkoutTime = 240,
         int $installmentsValue = 12,
         int $pixTime = 3600,
         string $successUrl = 'https://pagar.me',
-        string $cardId = null,
+        ?string $cardId = null,
     ) {
         $installments = [];
 
