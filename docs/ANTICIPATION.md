@@ -10,7 +10,7 @@ Este módulo permite criar, simular, consultar, cancelar e gerenciar antecipaç�
 -   [Cancelar antecipação pendente](#cancelar-antecipação-pendente)
 -   [Listar antecipações](#listar-antecipações)
 -   [Buscar antecipação específica](#buscar-antecipação-específica)
--   [Confirmar antecipação](#confirmar-antecipação)
+-   [Confirmar antecipação (deprecated)](#confirmar-antecipação-deprecated)
 
 ## Criar antecipação
 
@@ -24,13 +24,15 @@ Descrição: Cria uma antecipação para o recebedor informado, com os dados nec
 
 ## Simular antecipação
 
-**GET** `/recipients/{recipient_id}/bulk_anticipations/simulate`
+**POST** `/recipients/{recipient_id}/bulk_anticipations/simulate`
 
 ```php
-Pagarme::anticipation()->simulate(string $recipientId, array $queryParams)
+Pagarme::anticipation()->simulate(string $recipientId, array $data)
 ```
 
 Descrição: Simula uma antecipação para obter previsões sobre o valor líquido a receber, taxas e data de pagamento.
+
+> Desde 28/08/2026 a Pagar.me exige `POST` com os parâmetros (`timeframe`, `requested_amount`) no corpo, e `payment_date` não é mais aceito. Veja [Antecipações – mudanças](https://docs.pagar.me/docs/antecipações).
 
 ## Consultar limites de antecipação
 
@@ -72,7 +74,9 @@ Pagarme::anticipation()->find(string $recipientId, string $anticipationId)
 
 Descrição: Obtém as informações de uma antecipação específica pelo ID do recebedor e da antecipação.
 
-## Confirmar antecipação
+## Confirmar antecipação (deprecated)
+
+> **Deprecated desde a 1.3.0.** Este endpoint não consta na referência da API v5 e será removido na 2.0.
 
 **POST** `/recipients/{recipient_id}/bulk_anticipations/{bulk_anticipation_id}/confirm`
 
