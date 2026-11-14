@@ -20,7 +20,7 @@ Este módulo permite criar, buscar, listar e gerenciar pedidos e seus itens.
 **POST** `/orders`
 
 ```php
-Pagarme:order()->create(array $data)
+Pagarme::order()->create(array $data)
 ```
 
 Descrição: Cria um novo pedido com base nos dados fornecidos.
@@ -30,27 +30,31 @@ Descrição: Cria um novo pedido com base nos dados fornecidos.
 **GET** `/orders/{id}`
 
 ```php
-Pagarme:order()->find(string $id)
+Pagarme::order()->find(string $id)
 ```
 
 Descrição: Obtém as informações de um pedido específico com base no ID.
 
 ## Fechar pedido
 
-**POST** `/orders/{id}/closed`
+**PATCH** `/orders/{id}/closed`
 
 ```php
-Pagarme:order()->close(string $id)
+Pagarme::order()->close(string $id, array $data = [])
 ```
 
-Descrição: Fecha um pedido específico com base no ID.
+Descrição: Fecha um pedido específico com base no ID. O corpo aceita `status` (`paid`, `canceled` ou `failed`); se omitido, a API considera `paid`.
+
+```php
+Pagarme::order()->close('or_xxx', ['status' => 'canceled']);
+```
 
 ## Listar pedidos
 
 **GET** `/orders`
 
 ```php
-Pagarme:order()->all()
+Pagarme::order()->all()
 ```
 
 Descrição: Obtém uma lista de todos os pedidos.
@@ -62,7 +66,7 @@ Descrição: Obtém uma lista de todos os pedidos.
 **POST** `/orders/{id}/items`
 
 ```php
-Pagarme:order()->addItem(string $id, array $data)
+Pagarme::order()->addItem(string $id, array $data)
 ```
 
 Descrição: Adiciona um novo item a um pedido específico com base no ID do pedido e nos dados do item.
@@ -72,7 +76,7 @@ Descrição: Adiciona um novo item a um pedido específico com base no ID do ped
 **PUT** `/orders/{id}/items/{itemId}`
 
 ```php
-Pagarme:order()->updateItem(string $id, string $itemId, array $data)
+Pagarme::order()->updateItem(string $id, string $itemId, array $data)
 ```
 
 Descrição: Atualiza as informações de um item específico associado a um pedido com base nos IDs do pedido e do item, e nos novos dados fornecidos.
@@ -82,7 +86,7 @@ Descrição: Atualiza as informações de um item específico associado a um ped
 **DELETE** `/orders/{id}/items/{itemId}`
 
 ```php
-Pagarme:order()->deleteItem(string $id, string $itemId)
+Pagarme::order()->deleteItem(string $id, string $itemId)
 ```
 
 Descrição: Exclui um item específico associado a um pedido com base nos IDs do pedido e do item.
@@ -92,7 +96,7 @@ Descrição: Exclui um item específico associado a um pedido com base nos IDs d
 **DELETE** `/orders/{id}/items`
 
 ```php
-Pagarme:order()->deleteAllItems(string $id)
+Pagarme::order()->deleteAllItems(string $id)
 ```
 
 Descrição: Exclui todos os itens associados a um pedido específico com base no ID do pedido.
@@ -102,7 +106,7 @@ Descrição: Exclui todos os itens associados a um pedido específico com base n
 **GET** `/orders/{id}/items`
 
 ```php
-Pagarme:order()->allItems(string $id)
+Pagarme::order()->allItems(string $id)
 ```
 
 Descrição: Obtém uma lista de todos os itens associados a um pedido específico com base no ID do pedido.

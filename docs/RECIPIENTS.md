@@ -14,7 +14,7 @@ Este módulo permite criar, buscar, listar e gerenciar destinatarios.
 **POST** `/recipients`
 
 ```php
-Pagarme:recipient()->create(array $data)
+Pagarme::recipient()->create(array $data)
 ```
 
 Descrição: Cria um novo destinatario com base nos dados fornecidos.
@@ -24,7 +24,7 @@ Descrição: Cria um novo destinatario com base nos dados fornecidos.
 **GET** `/recipients/{id}`
 
 ```php
-Pagarme:recipient()->find(string $id)
+Pagarme::recipient()->find(string $id)
 ```
 
 Descrição: Obtém as informações de um destinatario específico com base no ID.
@@ -34,7 +34,7 @@ Descrição: Obtém as informações de um destinatario específico com base no 
 **PUT** `/recipients/{id}`
 
 ```php
-Pagarme:recipient()->update(string $id, array $data)
+Pagarme::recipient()->update(string $id, array $data)
 ```
 
 Descrição: Atualiza as informações de um destinatario específico com base no ID e nos novos dados fornecidos.
@@ -44,7 +44,7 @@ Descrição: Atualiza as informações de um destinatario específico com base n
 **GET** `/recipients`
 
 ```php
-Pagarme:recipient()->all()
+Pagarme::recipient()->all()
 ```
 
 Descrição: Obtém uma lista de todos os destinatarios.
