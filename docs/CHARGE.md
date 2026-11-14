@@ -75,6 +75,8 @@ Pagarme::charge()->updatePaymentMethod(string $id, array $data)
 
 Descrição: Atualiza o método de pagamento associado a uma cobrança específica com base no ID da cobrança e nos novos dados do método de pagamento.
 
+> Esta rota não aparece na referência pública da API v5 (só no SDK oficial `pagarme-core-api-php`). Teste no sandbox antes de usar em produção.
+
 ## Cancelar cobrança
 
 **DELETE** `/charges/{id}`
