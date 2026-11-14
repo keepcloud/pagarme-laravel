@@ -34,7 +34,7 @@ pint --test     # só verifica
 - `ApiAdapter::getUrl()` remove a `/` inicial do path, mas o padrão dos endpoints é escrever paths sem ela (`"customers/{$id}/cards"`).
 - Métodos que enviam corpo recebem `array $data` como último argumento e o repassam para `post/put/patch`. Parâmetros opcionais com default `null` usam tipo nullable explícito (`?array`) para evitar depreciação no PHP 8.4+.
 - Compatibilidade declarada: PHP `^8.2` e `illuminate/contracts ^11.0|^12.0|^13.0`. Ao mudar dependências, confira que o Composer ainda resolve com cada versão do Laravel (`composer require "illuminate/support:^13.0"` numa cópia descartável).
-- `"version"` no `composer.json` acompanha a tag de release (`vX.Y.Z`) e a tabela de Requisitos do README.
+- Não declarar `"version"` no `composer.json`: o Packagist lê a versão da tag `vX.Y.Z`. Para lançar uma versão: atualizar `CHANGELOG.md` e a tabela de Requisitos do README, fazer o merge no `main`, criar a tag anotada e a release no GitHub (`gh release create vX.Y.Z --latest`) com as notas do CHANGELOG.
 
 ## Commits
 
