@@ -10,4 +10,6 @@
 - `Subscription::enableManualBilling()` lançava `ArgumentCountError`: `ApiAdapter::post()` passa a aceitar corpo opcional.
 - `Subscription::updateMetadata()`, `updatePaymentMethod()`, `updateStartAt()` e `updateMinimumPrice()` não enviavam dados; agora recebem `array $data`.
 - Depreciação de nullable implícito no PHP 8.4+ em `ApiAdapter` e `Contracts\Payments\Charge::checkoutPayment()`.
-- Exemplos do README (campos `document`/`document_type` do cliente e vírgula faltando no exemplo de cartão).
+- `Order::close()` usava `POST`; a API v5 usa `PATCH /orders/{id}/closed`. Passa a aceitar `array $data` opcional (`status`: `paid`, `canceled` ou `failed`).
+- `Charge::editCard()`, `dueDate()` e `updatePaymentMethod()` usavam `PUT`; a API v5 usa `PATCH`.
+- Exemplos do README (campos `document`/`document_type` do cliente e vírgula faltando no exemplo de cartão) e `Pagarme:` → `Pagarme::` nos exemplos de `docs/`.

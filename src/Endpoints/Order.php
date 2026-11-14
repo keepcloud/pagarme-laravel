@@ -16,9 +16,9 @@ class Order extends ApiAdapter
         return $this->get("orders/{$id}");
     }
 
-    public function close($id)
+    public function close($id, array $data = [])
     {
-        return $this->post("orders/{$id}/closed", []);
+        return $this->patch("orders/{$id}/closed", $data);
     }
 
     public function all()

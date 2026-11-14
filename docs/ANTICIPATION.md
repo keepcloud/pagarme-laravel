@@ -17,7 +17,7 @@ Este módulo permite criar, simular, consultar, cancelar e gerenciar antecipaç�
 **POST** `/recipients/{recipient_id}/bulk_anticipations`
 
 ```php
-Pagarme:anticipation()->create(string $recipientId, array $data)
+Pagarme::anticipation()->create(string $recipientId, array $data)
 ```
 
 Descrição: Cria uma antecipação para o recebedor informado, com os dados necessários, como data de pagamento, valor solicitado, período, etc.
@@ -27,7 +27,7 @@ Descrição: Cria uma antecipação para o recebedor informado, com os dados nec
 **GET** `/recipients/{recipient_id}/bulk_anticipations/simulate`
 
 ```php
-Pagarme:anticipation()->simulate(string $recipientId, array $queryParams)
+Pagarme::anticipation()->simulate(string $recipientId, array $queryParams)
 ```
 
 Descrição: Simula uma antecipação para obter previsões sobre o valor líquido a receber, taxas e data de pagamento.
@@ -37,7 +37,7 @@ Descrição: Simula uma antecipação para obter previsões sobre o valor líqui
 **GET** `/recipients/{recipient_id}/bulk_anticipations/limits`
 
 ```php
-Pagarme:anticipation()->limits(string $recipientId, array $queryParams)
+Pagarme::anticipation()->limits(string $recipientId, array $queryParams)
 ```
 
 Descrição: Retorna os limites máximos e mínimos de antecipação que um recebedor pode fazer, para uma data e período especificados.
@@ -47,7 +47,7 @@ Descrição: Retorna os limites máximos e mínimos de antecipação que um rece
 **POST** `/recipients/{recipient_id}/bulk_anticipations/{bulk_anticipation_id}/cancel`
 
 ```php
-Pagarme:anticipation()->cancel(string $recipientId, string $anticipationId)
+Pagarme::anticipation()->cancel(string $recipientId, string $anticipationId)
 ```
 
 Descrição: Cancela uma antecipação com status pendente antes de ser confirmada pelo Pagar.me.
@@ -57,7 +57,7 @@ Descrição: Cancela uma antecipação com status pendente antes de ser confirma
 **GET** `/recipients/{recipient_id}/bulk_anticipations`
 
 ```php
-Pagarme:anticipation()->all(string $recipientId, array $queryParams = [])
+Pagarme::anticipation()->all(string $recipientId, array $queryParams = [])
 ```
 
 Descrição: Retorna uma lista com objetos de antecipações, podendo ser filtrada por diversos parâmetros.
@@ -67,7 +67,7 @@ Descrição: Retorna uma lista com objetos de antecipações, podendo ser filtra
 **GET** `/recipients/{recipient_id}/bulk_anticipations/{bulk_anticipation_id}`
 
 ```php
-Pagarme:anticipation()->find(string $recipientId, string $anticipationId)
+Pagarme::anticipation()->find(string $recipientId, string $anticipationId)
 ```
 
 Descrição: Obtém as informações de uma antecipação específica pelo ID do recebedor e da antecipação.
@@ -77,7 +77,7 @@ Descrição: Obtém as informações de uma antecipação específica pelo ID do
 **POST** `/recipients/{recipient_id}/bulk_anticipations/{bulk_anticipation_id}/confirm`
 
 ```php
-Pagarme:anticipation()->confirm(string $recipientId, string $anticipationId)
+Pagarme::anticipation()->confirm(string $recipientId, string $anticipationId)
 ```
 
 Descrição: Confirma a antecipação para que seja processada conforme o fluxo do Pagar.me.
