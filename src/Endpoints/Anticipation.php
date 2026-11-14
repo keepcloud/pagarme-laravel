@@ -11,9 +11,17 @@ class Anticipation extends ApiAdapter
         return $this->post("recipients/{$recipientId}/bulk_anticipations", $data);
     }
 
-    public function simulate($recipientId, array $queryParams)
+    /**
+     * Simula uma antecipação spot.
+     *
+     * Desde 28/08/2026 a API v5 exige POST com os parâmetros no corpo
+     * (timeframe, requested_amount); payment_date não é mais aceito.
+     *
+     * @see https://docs.pagar.me/docs/antecipações
+     */
+    public function simulate($recipientId, array $data)
     {
-        return $this->get("recipients/{$recipientId}/bulk_anticipations/simulate", $queryParams);
+        return $this->post("recipients/{$recipientId}/bulk_anticipations/simulate", $data);
     }
 
     public function limits($recipientId, array $queryParams)
@@ -36,6 +44,10 @@ class Anticipation extends ApiAdapter
         return $this->get("recipients/{$recipientId}/bulk_anticipations/{$anticipationId}");
     }
 
+    /**
+     * @deprecated 1.3.0 Endpoint não existe na referência da API v5 (herdado da v4).
+     *             Será removido na 2.0.
+     */
     public function confirm($recipientId, $anticipationId)
     {
         return $this->post("recipients/{$recipientId}/bulk_anticipations/{$anticipationId}/confirm", []);

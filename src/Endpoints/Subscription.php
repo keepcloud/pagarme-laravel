@@ -57,37 +57,41 @@ class Subscription extends ApiAdapter
     /**
      * Editar metadados da assinatura
      * @param string $id
+     * @param array $data
      */
-    public function updateMetadata($id)
+    public function updateMetadata($id, array $data = [])
     {
-        return $this->patch("subscriptions/{$id}/metadata");
+        return $this->patch("subscriptions/{$id}/metadata", $data);
     }
 
     /**
      * Editar meio de pagamento da assinatura
      * @param string $id
+     * @param array $data
      */
-    public function updatePaymentMethod($id)
+    public function updatePaymentMethod($id, array $data = [])
     {
-        return $this->patch("subscriptions/{$id}/payment-method");
+        return $this->patch("subscriptions/{$id}/payment-method", $data);
     }
 
     /**
      * Editar data de início da assinatura
      * @param string $id
+     * @param array $data
      */
-    public function updateStartAt($id)
+    public function updateStartAt($id, array $data = [])
     {
-        return $this->patch("subscriptions/{$id}/start-at");
+        return $this->patch("subscriptions/{$id}/start-at", $data);
     }
 
     /**
      * Editar preço mínimo da assinatura
      * @param string $id
+     * @param array $data
      */
-    public function updateMinimumPrice($id)
+    public function updateMinimumPrice($id, array $data = [])
     {
-        return $this->patch("subscriptions/{$id}/minimum_price");
+        return $this->patch("subscriptions/{$id}/minimum_price", $data);
     }
 
     /**

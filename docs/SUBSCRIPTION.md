@@ -71,7 +71,7 @@ Descrição: Atualiza as informações do cartão de crédito da assinatura.
 **PATCH** `/subscriptions/{id}/metadata`
 
 ```php
-Pagarme::subscription()->updateMetadata(string $id)
+Pagarme::subscription()->updateMetadata(string $id, array $data)
 ```
 
 Descrição: Atualiza os metadados de uma assinatura.
@@ -81,7 +81,7 @@ Descrição: Atualiza os metadados de uma assinatura.
 **PATCH** `/subscriptions/{id}/payment-method`
 
 ```php
-Pagarme::subscription()->updatePaymentMethod(string $id)
+Pagarme::subscription()->updatePaymentMethod(string $id, array $data)
 ```
 
 Descrição: Atualiza o método de pagamento da assinatura.
@@ -91,7 +91,7 @@ Descrição: Atualiza o método de pagamento da assinatura.
 **PATCH** `/subscriptions/{id}/start-at`
 
 ```php
-Pagarme::subscription()->updateStartAt(string $id)
+Pagarme::subscription()->updateStartAt(string $id, array $data)
 ```
 
 Descrição: Atualiza a data de início da assinatura.
@@ -101,7 +101,7 @@ Descrição: Atualiza a data de início da assinatura.
 **PATCH** `/subscriptions/{id}/minimum_price`
 
 ```php
-Pagarme::subscription()->updateMinimumPrice(string $id)
+Pagarme::subscription()->updateMinimumPrice(string $id, array $data)
 ```
 
 Descrição: Atualiza o preço mínimo da assinatura.
