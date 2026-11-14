@@ -1,6 +1,5 @@
 {
     "name": "keepcloud/pagarme-laravel",
-    "version": "1.3.0",
     "description": "A Laravel package to integrate with Pagar.me API",
     "keywords": [
         "laravel",
