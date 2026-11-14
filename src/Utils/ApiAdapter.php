@@ -42,20 +42,22 @@ abstract class ApiAdapter
 
         $apiVersion = rtrim(config('pagarme.api_version'), '/');
 
+        $url = ltrim($url, '/');
+
         return "{$baseUrl}/{$apiVersion}/{$url}";
     }
 
-    public function post(string $url, array $data, bool $multipart = false)
+    public function post(string $url, array $data = [], bool $multipart = false)
     {
         return $this->makeRequest('POST', $url, $data, $multipart);
     }
 
-    public function put(string $url, array $data = null, bool $multipart = false)
+    public function put(string $url, ?array $data = null, bool $multipart = false)
     {
         return $this->makeRequest('PUT', $url, $data, $multipart);
     }
 
-    public function patch(string $url, array $data = null, bool $multipart = false)
+    public function patch(string $url, ?array $data = null, bool $multipart = false)
     {
         return $this->makeRequest('PATCH', $url, $data, $multipart);
     }
@@ -74,7 +76,7 @@ abstract class ApiAdapter
         return $this->makeRequest('DELETE', $url, null, $multipart);
     }
 
-    protected function makeRequest(string $method, string $url, array $data = null, bool $multipart = false, array $options = [])
+    protected function makeRequest(string $method, string $url, ?array $data = null, bool $multipart = false, array $options = [])
     {
         $fullUrl = $this->getUrl($url);
 
