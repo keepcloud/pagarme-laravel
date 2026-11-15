@@ -11,3 +11,4 @@ node_modules
 .vscode
 .env
 .phpunit.result.cache
+CLAUDE.md
