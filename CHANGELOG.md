@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.3.1] - 2026-11-15
+
+### Removido
+- `CLAUDE.md` deixa de ser distribuído no pacote (passa a ser apenas local).
+
 ## [1.3.0] - 2026-11-14
 
 ### Adicionado
